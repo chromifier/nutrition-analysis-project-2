@@ -11,9 +11,14 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
       },
     },
+    // colors: {
+    //   // primary: '#06b6d4',
+    //   // secondary: "#fd7302",
+    //   // accent: "#1aca8b"
+    // }
   },
   plugins: [],
 };
