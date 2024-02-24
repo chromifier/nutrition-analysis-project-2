@@ -90,9 +90,7 @@ main {
 
 
 .submitButton {
-  display: block;
   position: relative;
-  margin: auto;
   margin-top: 1em;
   padding-right: 3em;
   padding-left: 3em;

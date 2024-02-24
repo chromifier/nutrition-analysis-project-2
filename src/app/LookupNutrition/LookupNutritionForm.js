@@ -32,7 +32,10 @@ const LookupNutritionForm = ({ nutritionResults, updatedNutritionResults }) => {
     return (
         <form className='mt-4 w-full' onSubmit={onSubmit}>
             <textarea placeholder="1 cup rice, 6oz grilled chicken breast" rows={4} className='ingr w-full' type="text" name="ingr" required />
-            <button className='submitButton' type="submit">Submit</button>
+			<div className='flex flex-row justify-center gap-6'>
+				<button className='submitButton' type="submit">Submit</button>
+				<button className='mt-4 bg-amber-800'>Clear</button>
+			</div>
         </form>
     );
 };
