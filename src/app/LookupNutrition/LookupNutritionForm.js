@@ -9,6 +9,11 @@ const LookupNutritionForm = ({ nutritionResults, updatedNutritionResults }) => {
     const API_ENDPOINT = "https://api.edamam.com/api/nutrition-details?app_id=bfd3dd4e&app_key=1be5ec5657603359399a2f72c545c9a0";
 
 
+	function clearLookupData() {
+		setIngredients(null);
+		updatedNutritionResults(null);
+		document.getElementById("ingredients").value = "";
+	}
 
     async function onSubmit(event) {
 		event.preventDefault();
@@ -30,13 +35,16 @@ const LookupNutritionForm = ({ nutritionResults, updatedNutritionResults }) => {
 	}
 
     return (
-        <form className='mt-4 w-full' onSubmit={onSubmit}>
-            <textarea placeholder="1 cup rice, 6oz grilled chicken breast" rows={4} className='ingr w-full' type="text" name="ingr" required />
-			<div className='flex flex-row justify-center gap-6'>
-				<button className='submitButton' type="submit">Submit</button>
-				<button className='mt-4 bg-amber-800'>Clear</button>
-			</div>
-        </form>
+		<>
+			<form className='mt-4 w-full' onSubmit={onSubmit}>
+				<textarea placeholder="1 cup rice, 6oz grilled chicken breast" id="ingredients" rows={4} className='ingr w-full' type="text" name="ingr" required />
+				<div className='flex flex-row justify-center gap-6'>
+					<button className='submitButton' type="submit">Submit</button>
+				</div>
+			</form>
+			<button className='mt-4 bg-amber-800 hover:bg-amber-700 transition-colors' onClick={clearLookupData}>Clear</button>
+		</>
+        
     );
 };
 
