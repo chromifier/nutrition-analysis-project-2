@@ -10,11 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  email    String  @unique
-  password String
-  name     String?
+model Users {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  email      String    @unique
+  name       String?
+  username   String?
+  profileImg String?
+  Recipes    Recipes[]
 
-  @@map("user")
+  @@map("users")
+}
+
+model Recipes {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  ingredients String
+  nutrients   String
+  userId      String
+  user        Users  @relation(fields: [userId], references: [id])
+
+  @@map("recipes")
 }

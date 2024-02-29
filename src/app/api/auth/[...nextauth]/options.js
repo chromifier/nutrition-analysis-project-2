@@ -1,10 +1,11 @@
 import GitHubProvider from "next-auth/providers/github";
+import upsertUser from '@/src/app/api/users/upsertUser'
 
 export const options = {
     providers: [
         GitHubProvider({
             profile(profile) {
-                console.log("Profile GitHub", profile);
+                // console.log("Profile GitHub", profile);
 
                 let userRole = "GitHub User";
                 if (profile?.email === "jmulkinj@gmail.com") {
@@ -32,5 +33,18 @@ export const options = {
 
             return session;
         }
+    },
+    events: {
+        async signIn({ user }) {
+            const data = {
+                email: user.email,
+                name: user.name,
+                userID: user.id,
+                username: user.login,
+                profileImg: user.avatar_url
+            }
+            console.log("Data passed to upsertUser:", data);
+            await upsertUser(data);
+        },
     }
 };

@@ -13,7 +13,6 @@ const CreateRecipeForm = ({ nutritionResults, updatedNutritionResults }) => {
 
     function clearLookupData() {
         setIngredients(null);
-        updatedNutritionResults(null);
         document.getElementById("ingredients").value = "";
     }
 
@@ -23,17 +22,7 @@ const CreateRecipeForm = ({ nutritionResults, updatedNutritionResults }) => {
 
         const formData = new FormData(event.target);
         const ingr = formData.get("ingr")?.toString().split(",");
-        setIngredients(ingr);
-
-        const fetch = await fetchNutrition(API_ENDPOINT, ingr).then((data) => {
-            setIsLoading(false);
-            setResponse([data]);
-            updatedNutritionResults([data]);
-            console.log([data]);
-        })
-            .catch((error) => {
-                console.log('error in fetchData', error.message);
-            });
+        
     }
 
     return (
