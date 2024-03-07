@@ -22,11 +22,11 @@ model Users {
 }
 
 model Recipes {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  ingredients String
-  nutrients   String
-  userId      String
-  user        Users  @relation(fields: [userId], references: [id])
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  ingredients    String[]
+  nutritionFacts Json[]
+  email          String
+  user           Users    @relation(fields: [email], references: [email])
 
   @@map("recipes")
 }

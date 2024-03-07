@@ -1,39 +1,35 @@
 "use client";
 
-import React, { useState } from 'react';
-import fetchNutrition from '../api/fetchNutrition';
-import Loading from '@/src/app/{components}/Loading';
+import axios from "axios";
 
-const CreateRecipeForm = ({ nutritionResults, updatedNutritionResults }) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [ingredients, setIngredients] = useState(null);
-    const [response, setResponse] = useState(null);
-    const API_ENDPOINT = "https://api.edamam.com/api/nutrition-details?app_id=bfd3dd4e&app_key=1be5ec5657603359399a2f72c545c9a0";
-
-
-    function clearLookupData() {
-        setIngredients(null);
-        document.getElementById("ingredients").value = "";
-    }
-
+const CreateRecipeForm = ({email}) => {
     async function onSubmit(event) {
         event.preventDefault();
-        setIsLoading(true);
 
         const formData = new FormData(event.target);
         const ingr = formData.get("ingr")?.toString().split(",");
-        
+
+        axios.post('http://localhost:3000/api/insertRecipe', {
+            ingredients: ingr,
+            email: email
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
 
     return (
         <>
+            <p>Creating recipe for userId: {email}</p>
             <form className='mt-4 w-full' onSubmit={onSubmit}>
                 <textarea placeholder="1 cup rice, 6oz grilled chicken breast" id="ingredients" rows={4} className='ingr w-full' type="text" name="ingr" required />
                 <div className='flex flex-row justify-center gap-6'>
-                    <button className='submitButton' type="submit">Submit</button>
+                    <button className='submitButton' type="submit">Create</button>
                 </div>
             </form>
-            <button className='mt-4 bg-amber-800 hover:bg-amber-700 transition-colors' onClick={clearLookupData}>Clear</button>
         </>
 
     );

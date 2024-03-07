@@ -5,7 +5,7 @@ export const options = {
     providers: [
         GitHubProvider({
             profile(profile) {
-                // console.log("Profile GitHub", profile);
+                console.log("Profile GitHub", profile);
 
                 let userRole = "GitHub User";
                 if (profile?.email === "jmulkinj@gmail.com") {
@@ -14,6 +14,7 @@ export const options = {
 
                 return {
                     ...profile,
+                    userId: this.id,
                     role: userRole
                 }
             },
@@ -29,7 +30,9 @@ export const options = {
         },
 
         async session({session, token}) {
-            if (session?.user) session.user.role = token.role;
+            if (session?.user) {
+                session.user.role = token.role;
+            }
 
             return session;
         }
