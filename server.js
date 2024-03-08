@@ -18,14 +18,16 @@ app.prepare().then(() => {
     // Define custom routes here, e.g.,
     // server.get('/my-route', (req, res) => handleRequest(req, res));
     server.post('/api/insertRecipe', async (req, res) => {
-        const {ingredients, email, nutritionFacts} = req.body;
+        const {ingredients, email, nutritionFacts, recipeName, dateCreated} = req.body;
         console.log("insertRecipe received: ", ingredients, " and ", email, " and ", nutritionFacts);
         try { 
           const recipe = await prisma.recipes.create({
             data: {
               ingredients,
               email,
-              nutritionFacts
+              nutritionFacts,
+              recipeName,
+              dateCreated
             }
           });
           
@@ -52,8 +54,6 @@ app.prepare().then(() => {
                 }
               }
             });
-
-            console.log(recipes);
             
             res.status(200).json({response: "recipes found successfully", recipes: recipes})
             console.log('Recipes found for:', email);

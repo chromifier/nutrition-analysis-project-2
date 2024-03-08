@@ -14,7 +14,7 @@ const recipes = async () => {
 
     return (
         <div className='flex items-center flex-col text-center w-full'>
-            <h1>Hello, {userName}! Here are your recipes!</h1>
+            <h1>Hello, {userName}!</h1>
             <UserRecipes userEmail={userEmail} />
         </div>
     );

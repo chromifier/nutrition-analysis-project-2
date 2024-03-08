@@ -25,8 +25,8 @@ model Recipes {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   email          String
   user           Users    @relation(fields: [email], references: [email])
-  dateCreated DateTime
-  recipeName String?
+  dateCreated    String
+  recipeName     String?
   ingredients    String[]
   nutritionFacts Json[]
 
