@@ -23,10 +23,12 @@ model Users {
 
 model Recipes {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  ingredients    String[]
-  nutritionFacts Json[]
   email          String
   user           Users    @relation(fields: [email], references: [email])
+  dateCreated DateTime
+  recipeName String?
+  ingredients    String[]
+  nutritionFacts Json[]
 
   @@map("recipes")
 }
