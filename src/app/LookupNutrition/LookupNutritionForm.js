@@ -58,14 +58,14 @@ const LookupNutritionForm = ({ email, nutritionResults, updatedNutritionResults 
 
     return (
 		<>
-			<form className='mt-4 w-full' onSubmit={onSubmit}>
-				<textarea placeholder="1 cup rice, 6oz grilled chicken breast" id="ingredients" rows={4} className='ingr w-full' type="text" name="ingr" required />
-				<div className='flex flex-col justify-center gap-6'>
-					<label>Save Ingredients & Nutrition Facts on Submit <input type="checkbox" name="save" id="save" /></label>
-					<button className='submitButton' type="submit">Submit</button>
+			<form className='mt-4 w-full card rounded-xl border-2 border-base-300 shadow-xl p-6 bg-neutral' onSubmit={onSubmit}>
+				<textarea placeholder="1 cup rice, 6oz grilled chicken breast" id="ingredients" rows={4} className='text-neutral-content bg-neutral-400 bg-opacity-50 ingr w-full textarea textarea-bordered' type="text" name="ingr" required />
+				<div className='flex flex-col justify-center gap-6 text-secondary-content'>
+					<label className='mt-2'>Save Ingredients & Nutrition Facts on Submit <input className='checkbox-primary' type="checkbox" name="save" id="save" /></label>
+					<button className='btn btn-success' type="submit">Submit</button>
 				</div>
 			</form>
-			<button className='mt-4 bg-amber-800 hover:bg-amber-700 transition-colors' onClick={clearLookupData}>Clear</button>
+			<button className='mt-4 btn btn-warning' onClick={clearLookupData}>Clear</button>
 		</>
         
     );

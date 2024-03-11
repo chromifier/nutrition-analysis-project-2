@@ -114,11 +114,18 @@ main {
   width: 40px;
 }
 
+.loading {
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display:inline-block;
+}
+
 
 
 .nutrition__card {
   padding: 15px;
-  background: rgba(182, 182, 182, 0.5);
+  /* background: rgba(182, 182, 182, 0.5); */
   border-radius: 5px;
   width: 100%;
   max-width: 445px;

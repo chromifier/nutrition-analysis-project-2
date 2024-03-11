@@ -4,29 +4,21 @@ module.exports = {
   "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   "./src/app/**/*.{js,ts,jsx,tsx,mdx}",],
   daisyui: {
+    // themes: ["autumn"],
     themes: [
       {
         mytheme: {
-        
-"primary": "#00b0ff",
-        
-"secondary": "#ff7a00",
-        
-"accent": "#72e200",
-        
-"neutral": "#020511",
-        
-"base-100": "#292929",
-        
-"info": "#00a4ff",
-        
-"success": "#00f795",
-        
-"warning": "#d40500",
-        
-"error": "#ff9da8",
+          "primary": "#B8D8D8",
+          "secondary": "#91A6FF", 
+          "accent": "#EF9A9A", 
+          "neutral": "#F3E9D2", 
+          "base-100": "#5E574D", 
+          "info": "#7EC8E3", 
+          "success": "#76B041", 
+          "warning": "#EBC85E", 
+          "error": "#D56161",
         },
-      },
+      }
     ],
   },
   plugins: [require("daisyui")],

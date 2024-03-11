@@ -15,8 +15,8 @@ const CreateRecipe = async () => {
 
     return (
         <div className='flex items-center flex-col text-center w-full'>
-            <h1>Hi {session?.user?.name}, Create A New Recipe</h1>
-                <div className='flex max-w-[600px] w-full justify-center'>
+            <h1 className='text-base-content'>Hi {session?.user?.name}, Create A New Recipe</h1>
+                <div className='flex max-w-[600px] w-full justify-center items-center'>
                     <CreateRecipeForm email={session?.user?.email}  />
                 </div>
         </div>

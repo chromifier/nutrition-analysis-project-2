@@ -10,7 +10,7 @@ function NutritionFactsCard({ data }) {
     const dailyNutrients = [data[0].totalDaily];
 
     return (
-      <div className='nutrition__card'>
+      <div className='nutrition__card bg-secondary'>
         <h2>Nutrition Facts</h2>
         {data.map((item, id) => (
           <div key={id} className=''>

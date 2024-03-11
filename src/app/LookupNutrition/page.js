@@ -9,7 +9,7 @@ const LookupNutrition = async () => {
 
     return (
         <div className='flex items-center flex-col text-center w-full mt-20'>
-            <h1>Lookup Nutrition Facts</h1>
+            <h1 className='text-base-content'>Lookup Nutrition Facts</h1>
             <LookupNutritionWrapper userEmail={email} />
         </div>
     );
