@@ -121,6 +121,10 @@ main {
   display:inline-block;
 }
 
+.trashCan {
+  filter: invert(40%) sepia(96%) saturate(320%) hue-rotate(314deg) brightness(102%) contrast(96%);
+}
+
 
 
 .nutrition__card {

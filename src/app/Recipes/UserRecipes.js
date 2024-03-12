@@ -3,6 +3,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import NutritionFactsCard from '../{components}/NutritionFactsCard/NutritionFactsCard';
+import trashSVG from '@/public/trash.svg';
+import Image from 'next/image';
 
 const UserRecipes = ({userEmail, updateRecipeCount}) => {
     const [recipes, setRecipes] = useState();
@@ -27,6 +29,20 @@ const UserRecipes = ({userEmail, updateRecipeCount}) => {
         container.style.maxHeight = container.style.maxHeight === '0px' ? '100%' : '0px';
     }
     
+    function deleteRecipe(id) {
+        console.log("deleting recipe id:", id);
+        let objectId = `ObjectId('${id}')`;
+
+        axios.post('http://localhost:3000/api/deleteRecipe', {
+            recipeID: objectId,
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
   return (
     <div>
@@ -40,7 +56,7 @@ const UserRecipes = ({userEmail, updateRecipeCount}) => {
                     <div id={"recipe__"+recipe.id} key={index}>
                         <div className='card shadow-xl bg-neutral bg-opacity-90 glass text-neutral-content max-w-[430px]'>
                             <div className='card-body'>
-                                <h2 className='card-title'>&quot;{recipe.recipeName}&quot;</h2>
+                                <h2 className='card-title relative'>&quot;{recipe.recipeName}&quot; <Image onClick={() => deleteRecipe(recipe.id)} className='trashCan hover:scale-110 transition-all hover:cursor-pointer right-0 absolute' src={trashSVG.src} width={25} height={25} alt="Trash Can" /></h2>
                                 <ul className='p-4'>
                                     <li>Recipe Ingredients: {recipe.ingredients.join(", ")}</li>
                                     <li>Recipe Calories: {recipe.nutritionFacts[0]?.calories}</li>
