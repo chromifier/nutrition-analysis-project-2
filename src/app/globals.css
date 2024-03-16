@@ -115,9 +115,8 @@ main {
 }
 
 .loading {
-  width: 100px;
-  height: 100px;
-  margin: 20px;
+  width: 30px;
+  height: 30px;
   display:inline-block;
 }
 

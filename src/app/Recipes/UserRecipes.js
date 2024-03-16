@@ -8,6 +8,7 @@ import Image from 'next/image';
 
 const UserRecipes = ({userEmail, updateRecipeCount}) => {
     const [recipes, setRecipes] = useState();
+    const [recipeCount, setRecipeCount] = useState(0);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -16,6 +17,7 @@ const UserRecipes = ({userEmail, updateRecipeCount}) => {
         })
         .then(function (response) {
             setRecipes(response.data.recipes);
+            setRecipeCount(response.data.recipes.length);
             setLoaded(true);
         })
         .catch(function (error) {
@@ -31,16 +33,38 @@ const UserRecipes = ({userEmail, updateRecipeCount}) => {
     
     function deleteRecipe(id) {
         console.log("deleting recipe id:", id);
-        let objectId = `ObjectId('${id}')`;
+        console.log("recipe__"+id)
+        
 
         axios.post('http://localhost:3000/api/deleteRecipe', {
-            recipeID: objectId,
+            recipeID: "id",
         })
         .then(function (response) {
             console.log(response);
+        
+            recipes.map((recipe, index) => {
+                let recipesCopy = recipes;
+                if (id === recipe.id) {
+                    recipesCopy.splice(index, 1)
+                    setRecipes(recipesCopy);
+                    setRecipeCount(recipesCopy.length);
+                    document.getElementById("recipe__"+id).style.display = 'none';
+                }
+            });
+
         })
         .catch(function (error) {
             console.log(error);
+
+            recipes.map((recipe, index) => {
+                let recipesCopy = recipes;
+                if (id === recipe.id) {
+                    recipesCopy.splice(index, 1)
+                    document.getElementById("recipe__"+id).style.display = 'none';
+                    // setRecipes(recipesCopy);
+                    // setRecipeCount(recipesCopy.length);
+                }
+            });
         });
     }
 
@@ -50,7 +74,7 @@ const UserRecipes = ({userEmail, updateRecipeCount}) => {
         loaded 
         ?
         <div className="flex flex-col p-4">
-            <h2 className='mt-4 mb-4'>{recipes.length > 1 ? `You have ${recipes.length} recipes saved` : `You have ${recipes.length} recipe saved`}</h2>
+            <h2 className='mt-4 mb-4'>{recipeCount > 1 ? `You have ${recipeCount} recipes saved` : `You have ${recipeCount} recipe saved`}</h2>
             <div className='grid grid-cols-1 items-center lg:grid-cols-2 justify-center gap-10'>
                 {recipes.map((recipe, index) => (
                     <div id={"recipe__"+recipe.id} key={index}>

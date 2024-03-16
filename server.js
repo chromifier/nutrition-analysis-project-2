@@ -41,13 +41,16 @@ app.prepare().then(() => {
         // res.status(200).json({response: `Server received your ingredients: ${ingredients}. And email: ${email}`});
     });
 
+    // Delete One Recipe
     server.post('/api/deleteRecipe', async (req, res) => {
       const {recipeID} = req.body;
       console.log("deleteRecipe received: ", recipeID);
 
       try {
-        const deleteRecipe = await prisma.recipes.deleteOne({
-          _id: recipeID
+        const deleteRecipe = await prisma.recipes.delete({
+          where: {
+            id: recipeID
+          }
         })
 
         res.status(200).json({response: `recipe id, ${recipeID}, deleted successfully`})

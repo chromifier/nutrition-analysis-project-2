@@ -49,20 +49,25 @@ const CreateRecipeForm = ({email}) => {
                 <input className="mb-4 p-2 rounded input input-bordered bg-neutral-400 bg-opacity-50 text-neutral-content" type="text" name="recipeName" placeholder="My Recipe Name"/>
                 <textarea placeholder="1 cup rice, 6oz grilled chicken breast" id="ingredients" rows={4} className='bg-neutral-400 bg-opacity-50 text-neutral-content ingr w-full textarea textarea-bordered' type="text" name="ingr" required />
                 <div className='flex flex-row justify-center gap-6 items-center mt-4'>
-                    <button className='btn btn-success' type="submit">Create</button>
+                    <button className='btn btn-success' type="submit">
+                        Create
+                        {
+                            loading
+                            ?
+                            <svg className="loading" version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enableBackground="new 0 0 0 0" xmlSpace="preserve">
+                                <path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                                    <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform>
+                                </path>
+                            </svg>
+                            :
+                            null
+                        }
+                        
+                        
+                    </button>
                     {submitted ? <p className="text-success">Recipe Created</p> : null}
                 </div>
             </form>
-            {loading ? <svg className='loading' version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve">
-                <rect fill="none" stroke="#fff" strokeWidth="4" x="25" y="25" width="50" height="50">
-                    <animateTransform attributeName="transform" dur="0.5s" from="0 50 50" to="180 50 50" type="rotate" id="strokeBox" attributeType="XML" begin="rectBox.end"></animateTransform>
-                </rect>
-                <rect x="27" y="27" fill="#fff" width="46" height="50">
-                    <animate attributeName="height" dur="1.3s" attributeType="XML" from="50" to="0" id="rectBox" fill="freeze" begin="0s;strokeBox.end"></animate>
-                </rect>
-            </svg>
-            : null}
-            
         </>
 
     );
